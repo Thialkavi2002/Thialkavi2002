@@ -1,0 +1,69 @@
+/* Reset and font */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: #000;
+  background-color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  max-width: 12px;
+  height:auto;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.meet-btn {
+  background: gold;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.promo-bar {
+  background: #d49b9b;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.promo-bar button {
+  background: black;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 50px;
+}
+
+.hero {
+  text-align: center;
+  padding: 40px;
+}
+
+.hero img {
+  max-width: 90%;
+  border: 3px solid gold;
+  border-radius: 8px;
+}
