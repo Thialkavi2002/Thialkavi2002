@@ -1,109 +1,128 @@
+/* General */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-image: url("/image/bg.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-    .main-wrapper {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 0;
-    }
+body, html {
+  height: 100%;
+  margin: 0;
+}
 
-    .container {
-      background: #e0e5ec;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 10px 10px 30px #c2c8d0, -10px -10px 30px #ffffff;
-      width: 300px;
-    }
+.bg-image {
+  background: url(/image/img1.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  
+}
 
-    .tabs {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  background: #e0e5ec;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 10px 10px 30px #c2c8d0, -10px -10px 30px #ffffff;
+  width: 300px;
+}
 
-    .tabs button {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      background: none;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 10px;
-      transition: 0.3s;
-    }
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
 
-    .tabs button.active {
-      background: #d1d9e6;
-      box-shadow: inset 2px 2px 5px #bec4cb, inset -2px -2px 5px #f0f5fa;
-    }
+.tabs button {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #444;
+  transition: 0.3s ease;
+  border-radius: 10px;
+}
 
-    .form {
-        margin: 20%;
-      display: none;
-      flex-direction: column;
-    }
+.tabs button.active {
+  background: #d1d9e6;
+  box-shadow: inset 2px 2px 5px #bec4cb, inset -2px -2px 5px #f0f5fa;
+}
 
-    .form.active {
-      display: flex;
-    }
+.form {
+  display: none;
+  flex-direction: column;
+}
 
-    input {
-      margin: 10px 0;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      background: #e0e5ec;
-      box-shadow: inset 4px 4px 6px #c8ccd1, inset -4px -4px 6px #f0f5fa;
-    }
+.form.active {
+  display: flex;
+}
 
-    .btn {
-      margin-top: 10px;
-      padding: 12px;
-      background: #e0e5ec;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 6px 6px 10px #c2c8d0, -6px -6px 10px #ffffff;
-      transition: 0.3s;
-    }
+.form input {
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #e0e5ec;
+  box-shadow: inset 4px 4px 6px #c8ccd1, inset -4px -4px 6px #f0f5fa;
+}
 
-    .btn:hover {
-      background: #d6dce4;
-    }
+.btn {
+  margin-top: 10px;
+  padding: 12px;
+  background: #e0e5ec;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 6px 6px 10px #c2c8d0, -6px -6px 10px #ffffff;
+  transition: 0.3s;
+}
 
-    .or {
-      text-align: center;
-      margin: 15px 0 10px;
-      font-size: 0.85em;
-      color: #666;
-    }
+.btn:hover {
+  background: #d6dce4;
+}
 
-    .socials {
-      display: flex;
-      justify-content: space-around;
-    }
+.or {
+  text-align: center;
+  margin: 15px 0 10px;
+  color: #666;
+}
 
-    .social {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: none;
-      background: #e0e5ec;
-      box-shadow: 6px 6px 10px #c2c8d0, -6px -6px 10px #ffffff;
-      font-size: 1.2em;
-      cursor: pointer;
-    }
+/* Social Buttons */
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social {
+  width: 40px;
+  height: 40px;
+  background: #eee;
+  border: none;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.social:hover {
+  background: #ddd;
+}
