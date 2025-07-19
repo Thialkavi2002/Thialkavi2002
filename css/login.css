@@ -18,7 +18,7 @@ body, html {
 }
 
 .bg-image {
-  background: url(/image/img1.jpg);
+  background: url(/image/img4.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -30,6 +30,7 @@ body, html {
 }
 
 .container {
+  justify-content: flex-end;
   max-width: 400px;
   margin: 50px auto;
   background: #e0e5ec;
