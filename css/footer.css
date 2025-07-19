@@ -1,29 +1,38 @@
 footer {
-  background: #9D735C;
+  background: rgba(0, 0, 0, 0.4);
   color: #fff;
-  padding: 50px 5% 20px;
+  z-index: 1000;
+  padding: 60px 5% 30px;
+  backdrop-filter: blur(10px); 
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
 }
 
 .footer-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
+  gap: 50px;
   max-width: 1200px;
   margin: auto;
 }
 
 .footer-column h4 {
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 15px;
-  border-bottom: 2px solid #faaf98;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
   display: inline-block;
-  padding-bottom: 5px;
+  padding-bottom: 6px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .footer-column p,
 .footer-column ul {
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .footer-column ul {
@@ -32,41 +41,43 @@ footer {
 }
 
 .footer-column ul li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .footer-column ul li a {
-  color: #ccc;
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .footer-column ul li a:hover {
-  color: #ff66a3;
+  color: #b7736e;
+  padding-left: 5px;
 }
 
 .footer-social {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 10px;
+  gap: 14px;
+  margin-top: 12px;
 }
 
 .social-icon {
-  font-size: 20px;
-  color: #ccc;
-  transition: color 0.3s;
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .social-icon:hover {
-  color: #ff66a3;
+  color: #fff;
+  transform: scale(1.2);
 }
 
 .footer-bottom {
   text-align: center;
-  padding-top: 20px;
+  padding-top: 25px;
   font-size: 13px;
-  color: #aaa;
-  border-top: 1px solid #444;
-  margin-top: 30px;
+  color: rgba(255, 255, 255, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 40px;
 }

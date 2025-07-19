@@ -3,37 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BlissBond</title>
+  <title>Rose Reverie - Wedding Planning</title>
   <link rel="stylesheet" href="/css/dashBoard.css"/>
   <link rel="stylesheet" href="/css/footer.css"/>
 </head>
 <body>
 
   <!-- Header -->
-  <header>
-    <div class="logo" id="logo"><img src="/image/logo.png" alt=""></div>
+  <header class="navbar">
+    <div class="logo">ROSE REVERIE<br><span>WEDDING PLANNER</span></div>
     <nav>
-      <a href="#">Services</a>
-      <a href="#">Portfolio</a>
-      <a href="#">Our Couples</a>
-      <a href="#">Pricing</a>
+      <a href="#" class="nav-link active">Home</a>
+      <a href="#">Our Services</a>
+      <a href="#">Destination Weddings</a>
+      <a href="#">Our Story</a>
+      <a href="#">Contact Us</a>
       <a href="#">Portal Login</a>
     </nav>
     <button class="meet-btn">LET'S MEET</button>
   </header>
 
-  <!-- Promo Bar -->
-  <section class="promo-bar">
-    <p>SAVE $400 WHEN YOU BOOK PHOTOGRAPHY AND VIDEOGRAPHY*</p>
-    <button onclick="getQuote()">GET A QUOTE</button>
-  </section>
-
   <!-- Main Image Placeholder -->
   <section class="hero">
-    <img src="4f90bc51-ac5e-441e-9f86-d1835407becb.png" alt="Wedding Display"/>
+    <img src="/image/img6.png" alt="Wedding Display"/>
   </section>
 
   <script>
+  // Get all nav links
+  const links = document.querySelectorAll('.nav-link');
+
+  links.forEach(link => {
+    link.addEventListener('click', function () {
+      links.forEach(l => l.classList.remove('active')); // Remove all
+      this.classList.add('active'); // Add to clicked
+    });
+  });
+
   function getQuote()
   {
     alert("Thank you! We'll get back to you with pricing details shortly.");
@@ -77,7 +82,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    &copy; 2025 WeddingPlanner-BlissBond. All rights reserved.
+    &copy; 2025 WeddingPlanner-RoseReverie. All rights reserved.
   </div>
 </footer>
 </html>
