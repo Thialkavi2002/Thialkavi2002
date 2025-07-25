@@ -31,7 +31,7 @@ body, html {
 .bg-image {
   background: url(/image/img3.jpg);
   background-size:cover;
-  background-position: center;
+  background-position: left;
   background-repeat: no-repeat;
   height: 100vh;
   display:flex;

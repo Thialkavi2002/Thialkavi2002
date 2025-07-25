@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wedding Planner Contact Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('/image/img10.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Contact Form */
+    .contact-wrapper {
+      display: flex;
+      max-width: 900px;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      margin: 50px auto;
+      color: black;
+    }
+
+    .contact-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      max-width: 400px;
+    }
+
+    .contact-form {
+      padding: 40px 30px;
+      flex: 1;
+      text-align: center;
+    }
+
+    .brand {
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .tagline {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.2rem;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    form input {
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      border: none;
+      background-color: #333;
+      border-radius: 20px;
+      font-size: 1rem;
+      color: white;
+    }
+
+    form input::placeholder {
+      color: #ccc;
+    }
+
+    form button {
+      background-color: #111;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #444;
+    }
+
+    .or {
+      margin: 15px 0;
+      color: #666;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .social {
+      background-color: #444;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 60px 5% 30px;
+      backdrop-filter: blur(8px);
+      color: #eee;
+    }
+
+    .floral-corner {
+      position: absolute;
+      top: 0;
+      width: 120px;
+    }
+
+    .floral-left {
+      left: 0;
+    }
+
+    .floral-right {
+      right: 0;
+      transform: scaleX(-1);
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .footer-quote {
+      flex: 1 1 250px;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .footer-quote span {
+    font-weight: 600;
+    color: #ffccdd;
+    }
+
+    .footer-quote .quote-sub {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-quote .quote-sub span {
+    color: #ffccdd;
+    font-weight: 500;
+    }
+
+    .footer-column {
+      flex: 1 1 200px;
+    }
+
+    .footer-column h4 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #ffccdd;
+      display: inline-block;
+      padding-bottom: 6px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-column ul li a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-column ul li a:hover {
+      color: #ffccdd;
+    }
+
+    /* Adjust Quick Links slightly to the right */
+    .footer-column.quick-links {
+      margin-left: 20px;
+    }
+
+    /* Contact Us icons */
+    .footer-column .contact-icon {
+      font-size: 20px;
+      margin-right: 8px;
+      vertical-align: middle;
+      color: #ffccdd;
+    }
+
+    .footer-column .contact-item {
+      font-size: 15px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-column .contact-item span {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .social-icon {
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.6);
+      transition: 0.3s ease;
+    }
+
+    .social-icon:hover {
+      color: #ffccdd;
+      transform: scale(1.2);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 13px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-policy-links {
+      margin-top: 10px;
+    }
+
+    .footer-policy-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      margin: 0 6px;
+    }
+
+    .footer-policy-links a:hover {
+      color: #ffccd5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Contact Section -->
+  <div class="contact-wrapper">
+    <div class="contact-image">
+      <img src="/image/img2.jpg" alt="Roses">
+    </div>
+    <div class="contact-form">
+      <h1 class="brand">Rose Reverie</h1>
+      <p class="tagline">Whispers of Love in Every Petal</p>
+      <form id="registerForm">
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <input type="password" placeholder="Confirm Password" required />
+        <button type="submit"><i class="fa fa-user-plus"></i> Register</button>
+        <p class="or">Or sign up with</p>
+        <div class="socials">
+          <button class="social">G</button>
+          <button class="social">f</button>
+          <button class="social">t</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <img src="/image/Picture2.png" alt="Floral Decoration" class="floral-corner floral-left" />
+    <img src="/image/Picture2.png" alt="Floral Decoration" class="floral-corner floral-right" />
+    <div class="footer-content">
+    <div class="footer-quote">
+    <p>
+        LET US BE <span>THE ONE</span> WHO<br>
+        <span>REALIZES</span> YOUR DREAM<br>
+        WEDDING <span>CEREMONY.</span>
+    </p>
+    <p class="quote-sub">
+        Your trusted guide for<br>
+        <span>stress-free planning</span>,<br>
+        <span>inspiring ideas</span>, and<br>
+        <span>handpicked vendors</span><br>
+        — all in one place.
+    </p>
+    </div>
+      <div class="footer-column quick-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Our Services</h4>
+        <ul>
+          <li><a href="#">Packages</a></li>
+          <li><a href="#">Venue</a></li>
+          <li><a href="#">Decorations</a></li>
+          <li><a href="#">Photographic & Videographic</a></li>
+          <li><a href="#">Bridal & Groom Beauty</a></li>
+          <li><a href="#">Food & Beverages</a></li>
+          <li><a href="#">Entertainment</a></li>
+          <li><a href="#">Destination Weddings</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Contact Us</h4>
+        <div class="contact-item"><i class="fa fa-envelope-square contact-icon"></i><span>www.RoseReverie.lk</span></div>
+        <div class="contact-item"><i class="fa fa-phone-square contact-icon"></i><span>+94 11433433</span></div>
+        <div class="contact-item"><i class="fa fa-map-marker contact-icon"></i><span>23/A, Piliyandala, Colombo</span></div>
+
+        <h4 style="margin-top: 20px;">Follow Us</h4>
+        <div class="footer-social">
+          <a href="#" class="social-icon"><i class="fa fa-facebook-square"></i></a>
+          <a href="#" class="social-icon"><i class="fa fa-linkedin-square"></i></a>
+          <a href="#" class="social-icon"><i class="fa fa-youtube-play"></i></a>
+          <a href="#" class="social-icon"><i class="fa fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fa fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 WeddingPlanner - Rose Reverie. All rights reserved.</p>
+      <div class="footer-policy-links">
+        <a href="#">Refund & Cancellation Policy</a> |
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Terms & Condition</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
