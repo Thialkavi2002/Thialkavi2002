@@ -4,55 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rose Reverie - Wedding Planning</title>
-  <link rel="stylesheet" href="/css/dashboard2.css"/>
+  <link rel="stylesheet" href="/css/dashboard.css"/>
   <link rel="stylesheet" href="/css/footer.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 <body>
 
- <!-- Header -->
+<!-- Navbar -->
 <header class="navbar">
   <div class="navbar-section left-links">
     <a href="#" class="nav-link active">Home</a>
-    <a href="#">Our Services</a>
-    <a href="#">Our Story</a>
+    <a href="#" class="nav-link">Our Services</a>
+    <a href="#" class="nav-link">Vendors</a>
+    <a href="#" class="nav-link">Our Story</a>
   </div>
 
   <div class="logo">
     ROSE REVERIE
-    <span>WEDDING PLANNERS</span>
+    <span>WEDDING PLANNER</span>
   </div>
 
   <div class="navbar-section right-links">
-    <a href="#">Contact Us</a>
-    <a href="#">Wish List</a>
-    <a href="#">Login Portal</a>
+    <a href="#" class="nav-link">Contact Us</a>
+    <a href="#" class="nav-link">Wish List</a>
+    <a href="#" class="nav-link">Login</a>
     <button class="meet-btn">LET'S MEET</button>
   </div>
 </header>
 
+<!-- Main Image Section -->
+<section class="hero">
+  <img src="/image/img6.png" alt="Wedding Display" />
+</section>
 
-  <!-- Main Image Placeholder -->
-  <section class="hero">
-    <img src="/image/img6.png" alt="Wedding Display"/>
-  </section>
-
-  <script>
-  // Get all nav links
+<script>
+  // Activate clicked nav link
   const links = document.querySelectorAll('.nav-link');
-
   links.forEach(link => {
     link.addEventListener('click', function () {
-      links.forEach(l => l.classList.remove('active')); // Remove all
-      this.classList.add('active'); // Add to clicked
+      links.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
     });
   });
-
-  function getQuote()
-  {
-    alert("Thank you! We'll get back to you with pricing details shortly.");
-  }
 </script>
-</body>
+
 
 <!-- Footer -->
   <footer class="footer">

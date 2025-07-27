@@ -10,47 +10,39 @@ body {
   color: #25130a;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 60px 5% 30px;
-  background-color: #090909;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  position: relative;
-  top: 0;
-  z-index: 1000;
-}
-
-.logo img {
-  height: 50px;
-  object-fit: contain;
-}
-
 .navbar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; 
-  align-items: center;
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 20px 40px;
-  background: rgba(0, 0, 0, 0.3); 
+  padding: 20px 60px;
+  background-color: rgba(255,255,255,0.3); 
+  backdrop-filter: blur(8px);
   color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   z-index: 1000;
-  backdrop-filter: blur(6px); 
-  font-family: 'Segoe UI', sans-serif;
+  flex-wrap: wrap;
+  font-size: 17px;
+}
+
+.navbar-section {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  color: #ffffff;
+  flex-wrap: wrap;
 }
 
 .nav-link {
   color: white;
   text-decoration: none;
-  margin: 0 15px;
-  padding-bottom: 4px;
+  margin: 0 5px;
+  padding-bottom: 2px;
   position: relative;
   transition: color 0.3s;
+  font-weight: bold;
+  border: none;
 }
 
 .nav-link:hover {
@@ -58,15 +50,17 @@ header {
 }
 
 .nav-link.active {
-  border-bottom: 2px solid #ffe8f1; /* Underline effect */
+  border-bottom: 2px solid #ffe8f1;
   font-weight: bold;
 }
 
 .logo {
   font-size: 1.5em;
   font-weight: bold;
+  text-align: center;
   letter-spacing: 2px;
   color: white;
+  align-content: center;
 }
 
 .logo span {
@@ -91,12 +85,11 @@ header {
   color: #fafafa4b;
 }
 
-/* Let's Meet Button */
 .meet-btn {
   background-color: #ffffff;
   color: black;
   border: none;
-  padding: 10px 18px;
+  padding: 7px 14px;
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
@@ -105,39 +98,6 @@ header {
 
 .meet-btn:hover {
   background-color: #e4cdd4;
-}
-
-
-/* Promo Bar */
-.promo-bar {
-  margin-bottom: 50%;
-  background-color: #fff0f5;
-  color: #aa3377;
-  padding: 15px 5%;
-  text-align: center;
-  font-size: 15px;
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  border-top: 1px solid #ffe0ec;
-  border-bottom: 1px solid #ffe0ec;
-}
-
-.promo-bar button {
-  background-color: #aa3377;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.promo-bar button:hover {
-  background-color: #8c2c66;
 }
 
 /* Hero Section */
@@ -155,20 +115,42 @@ header {
   max-height: 600px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  header {
+@media (max-width: 992px) {
+  .navbar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    padding: 20px;
   }
 
-  nav {
-    flex-direction: column;
+  .navbar-section {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .navbar-section.left-links,
+  .navbar-section.right-links {
     gap: 10px;
+    margin-bottom: 5px;
+  }
+
+  .logo {
+    position: static;
+    transform: none;
     margin: 10px 0;
   }
 
-  .promo-bar {
-    flex-direction: column;
+  .nav-link {
+    font-size: 14px;
+    margin: 5px;
+  }
+
+  .meet-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .logo span {
+    font-size: 0.6em;
   }
 }

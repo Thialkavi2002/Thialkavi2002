@@ -6,7 +6,7 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('/image/img9.png') no-repeat center center fixed;
+      background: url('/image/img10.jpeg') no-repeat center center fixed;
       background-size: cover;
       color: white;
       display: flex;
@@ -165,5 +165,5 @@
 }
 
 .footer-policy-links a:hover {
-  color: #fffee8;
+  color: #ffccdd;
 }
