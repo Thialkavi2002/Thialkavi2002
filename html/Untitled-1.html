@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rose Reverie - Wedding Planning</title>
+  <link rel="stylesheet" href="/css/footer.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('/image/img12.png') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .page-container {
+      display: flex;
+      flex: 1;
+      width: 100%;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
+    .right-form-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px 20px;
+      background-color: rgba(255, 255, 255, 0.3);
+      min-height: 100%;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px; 
+      background-color: rgba(255, 255, 255, 0.25);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px); 
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #ffffff;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .tagline {
+      font-size: 18px;
+      font-style: italic;
+      color: #ffffff;
+      margin-bottom: 30px;
+      font-weight: lighter;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .tabs button {
+      flex: 1;
+      padding: 14px;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      background: #b49595;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .tabs button.active {
+      background: rgba(0, 0, 0, 0.6); /* Black with transparency */;
+      color: white;
+    }
+
+    .form {
+      display: none;
+      flex-direction: column;
+    }
+
+    .form.active {
+      display: flex;
+    }
+
+    .form input {
+      padding: 16px;
+      font-size: 16px;
+      margin-bottom: 18px;
+      border-radius: 8px;
+      border: 1px solid #ffccdd;
+      width: 100%;
+    }
+
+    .btn {
+      padding: 14px;
+      background: rgba(0, 0, 0, 0.6); /* Black with transparency */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.3); 
+      color: black;
+      transform: scale(1.02);
+    }
+
+    .or {
+      text-align: center;
+      margin: 10px 0 15px;
+      color: #434141;
+      font-size: 16px;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social {
+      width: 48px;
+      height: 48px;
+      background: #000000;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .social:hover {
+      background: #ddd;
+    }
+
+    @media (max-width: 768px) {
+      .page-container {
+        flex-direction: column;
+        border-radius: 0;
+      }
+
+      .left-image-section {
+        height: 220px;
+        flex: none;
+      }
+
+      .right-form-section {
+        flex: none;
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="page-container">
+      <div class="left-image-section"></div>
+      <div class="right-form-section">
+        <div class="container">
+          <h1>Rose Reverie</h1>
+          <p class="tagline">Whispers of Love in Every Petal</p>
+
+          <div class="tabs">
+            <button id="loginTab" class="active">Login</button>
+            <button id="registerTab">Register</button>
+          </div>
+
+          <form id="loginForm" class="form active">
+            <input type="email" placeholder="Email" required />
+            <input type="password" placeholder="Password" required />
+            <button type="submit" class="btn">Login</button>
+            <p class="or">Or continue with</p>
+            <div class="socials">
+              <div class="social"><i class="fab fa-google"></i></div>
+              <div class="social"><i class="fab fa-facebook-f"></i></div>
+              <div class="social"><i class="fab fa-twitter"></i></div>
+            </div>
+          </form>
+
+          <form id="registerForm" class="form">
+            <input type="text" placeholder="Full Name" required />
+            <input type="email" placeholder="Email" required />
+            <input type="password" placeholder="Password" required />
+            <input type="password" placeholder="Confirm Password" required />
+            <button type="submit" class="btn">Register</button>
+            <p class="or">Or sign up with</p>
+            <div class="socials">
+              <div class="social"><i class="fab fa-google"></i></div>
+              <div class="social"><i class="fab fa-facebook-f"></i></div>
+              <div class="social"><i class="fab fa-twitter"></i></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <img src="/image/Picture2.png" alt="Floral Decoration" class="floral-corner floral-left" />
+      <img src="/image/Picture2.png" alt="Floral Decoration" class="floral-corner floral-right" />
+      <div class="footer-content">
+        <div class="footer-quote">
+          <p>
+            LET US BE <span>THE ONE</span> WHO<br>
+            <span>REALIZES</span> YOUR DREAM<br>
+            WEDDING <span>CEREMONY.</span>
+          </p>
+          <p class="quote-sub">
+            Your trusted guide for<br>
+            <span>stress-free planning</span>,<br>
+            <span>inspiring ideas</span>, and<br>
+            <span>handpicked vendors</span><br>
+            — all in one place.
+          </p>
+        </div>
+
+        <div class="footer-column quick-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Wish List</a></li>
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Packages</a></li>
+            <li><a href="#">Venue</a></li>
+            <li><a href="#">Decorations</a></li>
+            <li><a href="#">Photographic & Videographic</a></li>
+            <li><a href="#">Bridal & Groom Beauty</a></li>
+            <li><a href="#">Food & Beverages</a></li>
+            <li><a href="#">Entertainment</a></li>
+            <li><a href="#">Destination Weddings</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Contact Us</h4>
+          <div class="contact-item"><i class="fa fa-envelope-square contact-icon"></i><span>www.RoseReverie.lk</span></div>
+          <div class="contact-item"><i class="fa fa-phone-square contact-icon"></i><span>+94 11433433</span></div>
+          <div class="contact-item"><i class="fa fa-map-marker contact-icon"></i><span>23/A, Piliyandala, Colombo</span></div>
+
+          <h4 style="margin-top: 20px;">Follow Us</h4>
+          <div class="footer-social">
+            <a href="#" class="social-icon"><i class="fa fa-facebook-square"></i></a>
+            <a href="#" class="social-icon"><i class="fa fa-linkedin-square"></i></a>
+            <a href="#" class="social-icon"><i class="fa fa-youtube-play"></i></a>
+            <a href="#" class="social-icon"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fa fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 WeddingPlanner - Rose Reverie. All rights reserved.</p>
+        <div class="footer-policy-links">
+          <a href="#">Refund & Cancellation Policy</a> |
+          <a href="#">Privacy Policy</a> | 
+          <a href="#">Terms & Condition</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Tabs Script -->
+  <script>
+    const loginTab = document.getElementById("loginTab");
+    const registerTab = document.getElementById("registerTab");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+
+    loginTab.addEventListener("click", () => {
+      loginTab.classList.add("active");
+      registerTab.classList.remove("active");
+      loginForm.classList.add("active");
+      registerForm.classList.remove("active");
+    });
+
+    registerTab.addEventListener("click", () => {
+      registerTab.classList.add("active");
+      loginTab.classList.remove("active");
+      registerForm.classList.add("active");
+      loginForm.classList.remove("active");
+    });
+  </script>
+</body>
+</html>
