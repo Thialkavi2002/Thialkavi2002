@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rose Reverie - Wedding Planning</title>
-  <link rel="stylesheet" href="/css/dashboard.css"/>
-  <link rel="stylesheet" href="/css/footer.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wedding Venues</title>
+<link rel="stylesheet" href="/css/VenueDB.css"/> 
+<link rel="stylesheet" href="/css/navbar.css"/>
+<link rel="stylesheet" href="/css/footer.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 <body>
-
+    
 <!-- Navbar -->
 <header class="navbar">
   <div class="navbar-section left-links">
@@ -33,24 +34,79 @@
     <button class="meet-btn">Are You a Vendor?</button>
   </div>
 </header>
-
 <!-- Main Image Section -->
 <section class="hero">
   <img src="/image/img6.png" alt="Wedding Display" />
 </section>
+<header>
+    <h1>Wedding Venues</h1>
+</header>
+
+<div class="search-bar">
+    <input type="text" placeholder="Wedding Venues"/>
+    <input type="text" placeholder="Location"/>
+    <button>Search</button>
+</div>
+
+<div class="section-title">Venues by area</div>
+<div class="area-circles">
+    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>New York City</p></div>
+    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Los Angeles</p></div>
+    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Chicago</p></div>
+    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Houston</p></div>
+    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Phoenix</p></div>
+    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>San Antonio</p></div>
+</div>
+
+<div class="section-title">Venues in New York City</div>
+<div class="venues-grid">
+    <div class="venue-card">
+        <img src="https://via.placeholder.com/300x150" alt="">
+        <div class="content">
+            <h3>Swan Club On The Harbor</h3>
+            <p>4.8 ⭐ | New York City, NY</p>
+            <p class="price">$130 starting price</p>
+            <button>Request Pricing</button>
+        </div>
+    </div>
+    <div class="venue-card">
+        <img src="https://via.placeholder.com/300x150" alt="">
+        <div class="content">
+            <h3>Ravel Events at The Ravel Hotel</h3>
+            <p>4.7 ⭐ | New York City, NY</p>
+            <p class="price">$30,000 starting price</p>
+            <button>Request Pricing</button>
+        </div>
+    </div>
+</div>
+
+<div class="section-title">Venues in Los Angeles</div>
+<div class="venues-grid">
+    <div class="venue-card">
+        <img src="https://via.placeholder.com/300x150" alt="">
+        <div class="content">
+            <h3>Padua Hills Theatre</h3>
+            <p>4.6 ⭐ | Claremont, CA</p>
+            <p class="price">$16,000 starting price</p>
+            <button>Request Pricing</button>
+        </div>
+    </div>
+    <div class="venue-card">
+        <img src="https://via.placeholder.com/300x150" alt="">
+        <div class="content">
+            <h3>LA Banquets - The Landmark</h3>
+            <p>5.0 ⭐ | Mission Hills, CA</p>
+            <p class="price">Contact for price</p>
+            <button>Request Pricing</button>
+        </div>
+    </div>
+</div>
 
 <script>
-  // Activate clicked nav link
-  const links = document.querySelectorAll('.nav-link');
-  links.forEach(link => {
-    link.addEventListener('click', function () {
-      links.forEach(l => l.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
+document.querySelector('.search-bar button').addEventListener('click', () => {
+    alert('Search function is not implemented yet.');
+});
 </script>
-
-
 <!-- Footer -->
   <footer class="footer">
     <img src="/image/Picture2.png" alt="Floral Decoration" class="floral-corner floral-left" />
@@ -122,4 +178,5 @@
       </div>
     </div>
   </footer>
+</body>
 </html>
