@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #dcc5b1;
+  background-color: #ffffff;
   color: #25130a;
 }
 
@@ -14,35 +14,61 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 20px 60px;
-  background-color: rgba(255,255,255,0.3); 
-  backdrop-filter: blur(8px);
-  color: white;
+  padding: 15px 40px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
   flex-wrap: wrap;
-  font-size: 17px;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 1.4em;
+  white-space: nowrap;
+}
+
+.logo img {
+  height: 70px;
+  width: auto;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.logo-text span {
+  font-size: 0.7em;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Navbar links */
 .navbar-section {
   display: flex;
-  gap: 15px;
   align-items: center;
-  color: #ffffff;
+  gap: 18px;
   flex-wrap: wrap;
 }
 
 .nav-link {
   color: white;
   text-decoration: none;
-  margin: 0 5px;
-  padding-bottom: 2px;
+  font-weight: 600;
   position: relative;
-  transition: color 0.3s;
-  font-weight: bold;
-  border: none;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
@@ -51,54 +77,48 @@ body {
 
 .nav-link.active {
   border-bottom: 2px solid #b49862;
-  font-weight: bold;
 }
 
-.logo {
-  font-size: 1.5em;
-  font-weight: bold;
-  text-align: center;
-  letter-spacing: 2px;
-  color: white;
-  align-content: center;
-}
-
-.logo span {
-  font-size: 0.75em;
-  font-weight: 400;
-  letter-spacing: 4px;
-  display: block;
-  margin-top: 4px;
-}
-
-/* Navigation Links */
-.navbar nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: 500;
-  font-size: 1em;
-  transition: color 0.3s;
-}
-
-.navbar nav a:hover {
-  color: #b49862;
-}
-
+/* Buttons */
 .meet-btn {
   background-color: #fdefd2;
-  color: black;
+  color: #25130a;
   border: none;
-  padding: 7px 14px;
-  border-radius: 5px;
-  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .meet-btn:hover {
   background-color: #b49862;
+  color: white;
 }
+
+/* Responsive */
+@media (max-width: 992px) {
+  .navbar {
+    flex-direction: column;
+    padding: 15px 20px;
+  }
+
+  .navbar-section {
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .nav-link {
+    font-size: 14px;
+  }
+
+  .meet-btn {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
+
 
 /* Hero Section */
 .hero {
@@ -113,6 +133,133 @@ body {
   display: block;
   object-fit: cover;
   max-height: 600px;
+}
+
+/* General Package Container */
+.packages-container {
+  display: flex;
+  flex-wrap: wrap; /* allow wrapping on smaller screens */
+  justify-content: center; /* center all packages */
+  gap: 20px; /* space between packages */
+  padding: 40px 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Individual Package */
+.package {
+  width: 280px;
+  padding: 25px 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.package:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+/* Package Colors */
+.silver { background-color: #EAD8C0; color: #333; }
+.gold { background-color: #D1BB9E; color: #333; }
+.platinum { background-color: #A79277; color: #fff; }
+.custom { background-color: #FFF2E1; color: #333; }
+
+
+
+.silver h2 { background-color: rgba(234,216,192,0.6); }
+.gold h2 { background-color: rgba(209,187,158,0.6); }
+.platinum h2 { background-color: rgba(167,146,119,0.6); }
+.custom h2 { background-color: rgba(255,242,225,0.6); }
+
+/* Package Guest & Budget Info */
+.package .package-guest {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 1px;
+}
+.package .package-budget {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+/* Package Lists */
+.package ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.package li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Icons in Lists */
+.package li i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+.platinum li, .platinum li i { color: #fff; } /* Platinum package text & icons white */
+
+/* Buttons in one line */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Select Buttons */
+.select-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Buttons per Package with Gradient */
+.silver .select-btn { 
+  background: linear-gradient(135deg, #D1C1A6, #C0B08D); 
+  color: #333; 
+}
+.gold .select-btn { 
+  background: linear-gradient(135deg, #C9A97C, #B88F5E); 
+  color: #fff; 
+}
+.platinum .select-btn { 
+  background: linear-gradient(135deg, #8B6B4F, #73543B); 
+  color: #fff; 
+}
+.custom .select-btn { 
+  background: linear-gradient(135deg, #FFE6C2, #FFD9A6); 
+  color: #333; 
+}
+
+/* Button Hover Effects */
+.select-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* Responsive for Medium Screens */
+@media screen and (max-width: 1200px) {
+  .package { width: 45%; }
+}
+
+/* Responsive for Mobile */
+@media screen and (max-width: 768px) {
+  .package { width: 90%; }
 }
 
 @media (max-width: 992px) {
