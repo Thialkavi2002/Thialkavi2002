@@ -46,11 +46,11 @@ body {
 }
 
 .nav-link:hover {
-  color: #ffe8f1;
+  color: #b49862;
 }
 
 .nav-link.active {
-  border-bottom: 2px solid #ffe8f1;
+  border-bottom: 2px solid #b49862;
   font-weight: bold;
 }
 
@@ -82,11 +82,11 @@ body {
 }
 
 .navbar nav a:hover {
-  color: #fafafa4b;
+  color: #b49862;
 }
 
 .meet-btn {
-  background-color: #ffffff;
+  background-color: #fdefd2;
   color: black;
   border: none;
   padding: 7px 14px;
@@ -97,7 +97,7 @@ body {
 }
 
 .meet-btn:hover {
-  background-color: #e4cdd4;
+  background-color: #b49862;
 }
 
 /* Hero Section */
