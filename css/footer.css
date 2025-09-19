@@ -6,7 +6,7 @@
 
     footer {
       font-family: 'Segoe UI', sans-serif;
-      background: url('/image/img10.jpeg') no-repeat center center fixed;
+      background-color: black;
       background-size: cover;
       color: white;
       display: flex;

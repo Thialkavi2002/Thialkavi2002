@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promotional Placements - Vendor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      padding: 20px;
+      color: #374151;
+    }
+    h1 {
+      color: #bfa14a;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+    }
+    button {
+      background: #bfa14a;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #a68d3b;
+    }
+    .status-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    .status-table th, .status-table td {
+      border: 1px solid #e5e7eb;
+      padding: 10px;
+      text-align: left;
+    }
+    .status-pending { color: orange; font-weight: bold; }
+    .status-approved { color: green; font-weight: bold; }
+    .status-rejected { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>Promotional Placements</h1>
+
+  <div class="card">
+    <h2>Request a Placement</h2>
+    <form id="placementForm">
+      <div class="form-group">
+        <label for="placementType">Placement Type</label>
+        <select id="placementType" required>
+          <option value="">-- Select --</option>
+          <option value="homepage">Homepage Banner</option>
+          <option value="category">Category Highlight</option>
+          <option value="sidebar">Sidebar Ad</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="adTitle">Advertisement Title</label>
+        <input type="text" id="adTitle" placeholder="Enter ad title" required>
+      </div>
+
+      <div class="form-group">
+        <label for="adFile">Upload Advertisement (Image/PDF)</label>
+        <input type="file" id="adFile" accept="image/*,.pdf" required>
+      </div>
+
+      <div class="form-group">
+        <label for="adDesc">Description</label>
+        <textarea id="adDesc" rows="3" placeholder="Brief description..." required></textarea>
+      </div>
+
+      <button type="submit">Submit Request</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>My Requests</h2>
+    <table class="status-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Placement</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="requestList">
+        <tr>
+          <td>Homepage Diwali Banner</td>
+          <td>Homepage</td>
+          <td class="status-pending">Pending</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<script>
+  document.getElementById("placementForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    const title = document.getElementById("adTitle").value;
+    const type = document.getElementById("placementType").value;
+
+    const row = `<tr>
+      <td>${title}</td>
+      <td>${type}</td>
+      <td class="status-pending">Pending</td>
+    </tr>`;
+    document.getElementById("requestList").innerHTML += row;
+    this.reset();
+    alert("Your placement request has been submitted and is pending admin approval.");
+  });
+</script>
+</body>
+</html>

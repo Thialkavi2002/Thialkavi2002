@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promotional Placements & Boosted Listings</title>
+  <style>
+    /* Reset */
+  *{ margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background: #f9fafb; color: #333; }
+
+/* Header */
+header {
+  background: #3b82f6;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header nav a {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+header nav a:hover { text-decoration: underline; }
+
+/* Sections */
+main { padding: 20px; }
+h2 { margin-bottom: 15px; color: #111827; }
+
+/* Cards */
+.cards { display: flex; gap: 20px; flex-wrap: wrap; }
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  flex: 1;
+  min-width: 250px;
+}
+.card h3 { margin-bottom: 10px; }
+.card p { margin-bottom: 15px; font-size: 14px; color: #555; }
+.btn {
+  background: #3b82f6;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn:hover { background: #2563eb; }
+
+/* Listings */
+.listing-list { list-style: none; margin-top: 15px; }
+.listing-list li {
+  background: white;
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+.switch input { display: none; }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+input:checked + .slider { background: #3b82f6; }
+input:checked + .slider:before { transform: translateX(22px); }
+
+/* Progress Bar */
+.progress-container { margin-top: 20px; }
+.progress-bar {
+  width: 100%; height: 20px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: #3b82f6;
+  transition: width 0.3s ease;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  width: 300px;
+}
+.close-btn { margin-top: 15px; }
+</style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Promotional Placements</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Dashboard</a>
+      <a href="#">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Promotional Placements Section -->
+    <section class="placements">
+      <h2>Choose Your Promotion</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Homepage Banner</h3>
+          <p>Showcase your listing on the homepage banner for maximum visibility.</p>
+          <button class="btn promote-btn">Promote Now</button>
+        </div>
+        <div class="card">
+          <h3>Category Spotlight</h3>
+          <p>Highlight your product in the category section to attract more buyers.</p>
+          <button class="btn promote-btn">Promote Now</button>
+        </div>
+        <div class="card">
+          <h3>Search Boost</h3>
+          <p>Get your listing to appear higher in search results.</p>
+          <button class="btn promote-btn">Promote Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Boosted Listings Section -->
+    <section class="boosted">
+      <h2>Your Listings</h2>
+      <ul class="listing-list">
+        <li>
+          <span>Product A</span>
+          <label class="switch">
+            <input type="checkbox" class="boost-toggle">
+            <span class="slider"></span>
+          </label>
+        </li>
+        <li>
+          <span>Product B</span>
+          <label class="switch">
+            <input type="checkbox" class="boost-toggle">
+            <span class="slider"></span>
+          </label>
+        </li>
+        <li>
+          <span>Product C</span>
+          <label class="switch">
+            <input type="checkbox" class="boost-toggle">
+            <span class="slider"></span>
+          </label>
+        </li>
+      </ul>
+
+      <!-- Progress -->
+      <div class="progress-container">
+        <span>Boost Progress:</span>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Confirmation Modal -->
+  <div class="modal" id="confirmationModal">
+    <div class="modal-content">
+      <h3>Promotion Activated 🎉</h3>
+      <p>Your listing has been successfully boosted.</p>
+      <button class="btn close-btn">OK</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

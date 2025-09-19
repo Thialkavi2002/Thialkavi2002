@@ -14,7 +14,7 @@ body {
     }
     header h1 {
         font-size: 1.5rem;
-        color: #00bfa6;
+        color: #bfa14a;
         margin: 0;
     }
     .search-bar {
@@ -28,7 +28,7 @@ body {
         border-radius: 6px;
     }
     .search-bar button {
-        background: #00bfa6;
+        background: #bfa14a;
         color: white;
         border: none;
         cursor: pointer;
@@ -93,10 +93,61 @@ body {
     }
     .venue-card button {
         background: none;
-        border: 1px solid #00bfa6;
-        color: #00bfa6;
+        border: 1px solid #bfa14a;
+        color: #bfa14a;
         padding: 8px;
         margin: 10px;
         border-radius: 6px;
         cursor: pointer;
     }
+
+    .hero {
+  position: relative;
+  width: 100%;
+  height: 400px; /* adjust height */
+  background: url('/image/img20.png') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Search bar overlay */
+.search-bar {
+  display: flex;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  width: 70%;
+  max-width: 600px;
+}
+
+.search-bar input {
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  flex: 1;
+  outline: none;
+}
+
+.search-bar button {
+  background: #bfa14a;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background: #bfa14a;
+}

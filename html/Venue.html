@@ -4,58 +4,52 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Wedding Venues</title>
-<link rel="stylesheet" href="/css/VenueDB.css"/> 
-<link rel="stylesheet" href="/css/navbar.css"/>
+<link rel="stylesheet" href="/css/Venue.css"/> 
+<link rel="stylesheet" href="/css/dashBoard.css"/>
 <link rel="stylesheet" href="/css/footer.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 <body>
-    
 <!-- Navbar -->
 <header class="navbar">
-  <div class="navbar-section left-links">
-    <a href="#" class="nav-link active">Home</a>
-    <a href="#" class="nav-link">Our Services</a>
-    <a href="#" class="nav-link">Vendors</a>
-    <a href="#" class="nav-link">Our Story</a>
-  </div>
-
   <div class="logo">
-    ROSE REVERIE
-    <span>WEDDING PLANNER</span>
+    <img src="/image/logoImg.png" alt="Rose Reverie Logo">
+    <div class="logo-text">
+      ROSE REVERIE
+      <span>Wedding Planner</span>
+    </div>
   </div>
-
-  <div class="navbar-section right-links">
+  <div class="navbar-section left-links">
+    <a href="#" class="nav-link">Home</a>
+    <a href="#" class="nav-link active">Our Services</a>
+    <a href="#" class="nav-link">Our Story</a>
     <a href="#" class="nav-link">Contact Us</a>
     <a href="#" class="nav-link">Wish List</a>
     <a href="#" class="nav-link">Login</a>
     <button class="meet-btn">LET'S MEET</button>
-    <button class="meet-btn">Are You a Vendor?</button>
+    <button class="meet-btn">ARE YOU A VENDOR?</button>
   </div>
 </header>
-<!-- Main Image Section -->
+
+<!-- Hero with overlay text + search -->
 <section class="hero">
-  <img src="/image/img6.png" alt="Wedding Display" />
+  <h1>Wedding Venues</h1>
+  <div class="search-bar">
+      <input type="text" placeholder="Wedding Venues"/>
+      <input type="text" placeholder="Location"/>
+      <button>Search</button>
+  </div>
 </section>
-<header>
-    <h1>Wedding Venues</h1>
-</header>
 
-<div class="search-bar">
-    <input type="text" placeholder="Wedding Venues"/>
-    <input type="text" placeholder="Location"/>
-    <button>Search</button>
-</div>
-
-<div class="section-title">Venues by area</div>
+<div class="section-title">Venues By Area</div>
 <div class="area-circles">
-    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>New York City</p></div>
-    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Los Angeles</p></div>
-    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Chicago</p></div>
-    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Houston</p></div>
-    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Phoenix</p></div>
-    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>San Antonio</p></div>
+    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Colombo</p></div>
+    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Kandy</p></div>
+    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Galle</p></div>
+    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Nuwara Eliya</p></div>
+    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Hambanthota</p></div>
+    <div class="area"><img src="https://via.placeholder.com/80" alt=""><p>Kurunegala</p></div>
 </div>
 
 <div class="section-title">Venues in New York City</div>
@@ -178,5 +172,6 @@ document.querySelector('.search-bar button').addEventListener('click', () => {
       </div>
     </div>
   </footer>
+
 </body>
 </html>

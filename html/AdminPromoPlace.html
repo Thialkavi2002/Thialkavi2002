@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Promotional Placements</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #2c3e50;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 22px;
+    }
+    .container {
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      color: #333;
+    }
+    .actions {
+      margin-top: 10px;
+    }
+    button {
+      padding: 8px 12px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .approve { background: #27ae60; color: #fff; }
+    .reject { background: #e74c3c; color: #fff; }
+    .status {
+      font-weight: bold;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>Admin Dashboard - Promotional Placements</header>
+  <div class="container">
+    <div class="card">
+      <h3>Vendor: Kavindi’s Store</h3>
+      <p>Requested Ad Placement: <strong>Homepage Banner</strong></p>
+      <p>Format: JPG, 728x90</p>
+      <div class="actions">
+        <button class="approve" onclick="updateStatus(this, 'Approved')">Approve</button>
+        <button class="reject" onclick="updateStatus(this, 'Rejected')">Reject</button>
+      </div>
+      <p class="status">Status: Pending</p>
+    </div>
+
+    <div class="card">
+      <h3>Vendor: ABC Mart</h3>
+      <p>Requested Ad Placement: <strong>Category Highlight</strong></p>
+      <p>Format: PNG, 300x250</p>
+      <div class="actions">
+        <button class="approve" onclick="updateStatus(this, 'Approved')">Approve</button>
+        <button class="reject" onclick="updateStatus(this, 'Rejected')">Reject</button>
+      </div>
+      <p class="status">Status: Pending</p>
+    </div>
+  </div>
+
+  <script>
+    function updateStatus(button, status) {
+      const card = button.closest('.card');
+      const statusText = card.querySelector('.status');
+      statusText.textContent = "Status: " + status;
+      statusText.style.color = (status === "Approved") ? "green" : "red";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boosted Listings - Vendor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      padding: 20px;
+      color: #374151;
+    }
+    h1 {
+      color: #bfa14a;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+    select, button {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+    }
+    button {
+      background: #bfa14a;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #a68d3b;
+    }
+    .status-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .status-table th, .status-table td {
+      border: 1px solid #e5e7eb;
+      padding: 10px;
+    }
+    .status-pending { color: orange; font-weight: bold; }
+    .status-approved { color: green; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>Boosted Listings</h1>
+
+  <div class="card">
+    <h2>Request Boost</h2>
+    <form id="boostForm">
+      <label for="listingSelect">Choose a Listing</label>
+      <select id="listingSelect" required>
+        <option value="">-- Select --</option>
+        <option value="flower-package">Flower Package</option>
+        <option value="catering-service">Catering Service</option>
+        <option value="wedding-venue">Wedding Venue</option>
+      </select>
+
+      <label for="duration">Boost Duration</label>
+      <select id="duration" required>
+        <option value="7">7 Days</option>
+        <option value="14">14 Days</option>
+        <option value="30">30 Days</option>
+      </select>
+
+      <button type="submit">Request Boost</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>My Boosted Listings</h2>
+    <table class="status-table">
+      <thead>
+        <tr>
+          <th>Listing</th>
+          <th>Duration</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="boostList">
+        <tr>
+          <td>Flower Package</td>
+          <td>14 Days</td>
+          <td class="status-approved">Approved</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<script>
+  document.getElementById("boostForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    const listing = document.getElementById("listingSelect").value;
+    const duration = document.getElementById("duration").value;
+
+    const row = `<tr>
+      <td>${listing}</td>
+      <td>${duration} Days</td>
+      <td class="status-pending">Pending</td>
+    </tr>`;
+    document.getElementById("boostList").innerHTML += row;
+    this.reset();
+    alert("Your boost request has been submitted and is pending admin approval.");
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin — Placements & Boosted Listings</title>
+  <style>
+    :root{
+      --accent:#bfa14a;
+      --bg:#f4f7fb;
+      --card:#fff;
+      --muted:#6b7280;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Arial;
+      background:var(--bg);
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    header{
+      background:#1f2937;
+      color:white;
+      padding:14px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    header h1{margin:0;font-size:18px;letter-spacing:0.2px}
+    header .meta{font-size:13px;color:#d1d5db}
+    .wrap{display:flex;gap:20px;padding:20px;max-width:1200px;margin:18px auto}
+    /* left column (requests) and right column (published/active) */
+    .col{flex:1;min-width:300px}
+    .card{background:var(--card);border-radius:10px;padding:16px;box-shadow:0 6px 18px rgba(15,23,42,0.06);margin-bottom:16px}
+    h2{margin:0 0 12px 0;color:var(--accent)}
+    .row{display:flex;gap:12px;align-items:center}
+    .muted{color:var(--muted);font-size:13px}
+    .btn{display:inline-block;padding:8px 10px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+    .btn-approve{background:#16a34a;color:white}
+    .btn-reject{background:#ef4444;color:white}
+    .btn-edit{background:#f59e0b;color:#111}
+    .btn-delete{background:#9b1c1c;color:white}
+    .btn-unpublish{background:#374151;color:white}
+    .small{font-size:13px;padding:6px 8px;border-radius:6px}
+    .grid-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    th,td{padding:8px;text-align:left;border-bottom:1px solid #eef2f6}
+    th{color:var(--muted);font-weight:600}
+    .label{display:inline-block;padding:6px 8px;border-radius:999px;font-weight:700;font-size:12px}
+    .label.pending{background:#fef3c7;color:#b45309}
+    .label.approved{background:#dcfce7;color:#15803d}
+    .label.rejected{background:#fee2e2;color:#991b1b}
+    .kicker{font-size:12px;color:var(--muted)}
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    /* responsive */
+    @media (max-width:900px){
+      .wrap{flex-direction:column;padding:12px}
+      .grid-two{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Admin Dashboard — Promotions & Boosts</h1>
+      <div class="meta">Manage vendor requests, approve or reject and publish placements/boosts</div>
+    </div>
+    <div class="kicker">Signed in as <strong>Admin</strong></div>
+  </header>
+
+  <div class="wrap">
+    <!-- Left column: Incoming requests from vendors -->
+    <div class="col">
+      <div class="card">
+        <h2>Placement Requests</h2>
+        <p class="kicker">These are ad placement submissions sent by vendors. Approve to publish, or reject.</p>
+        <div id="placementsRequestsContainer"></div>
+      </div>
+
+      <div class="card">
+        <h2>Boost Requests</h2>
+        <p class="kicker">Vendor requests to boost individual listings. Approve to activate the boost.</p>
+        <div id="boostRequestsContainer"></div>
+      </div>
+    </div>
+
+    <!-- Right column: Published placements and Active boosts -->
+    <div class="col">
+      <div class="card">
+        <h2>Published Placements</h2>
+        <p class="kicker">Placements that were approved and are currently published.</p>
+        <div id="publishedPlacementsContainer"></div>
+      </div>
+
+      <div class="card">
+        <h2>Active Boosts</h2>
+        <p class="kicker">Listings that have been approved and boosted (active).</p>
+        <div id="activeBoostsContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /***********************
+     * In-memory sample data (represents vendor-submitted requests)
+     * In real app admin would fetch these from backend API.
+     ***********************/
+    const placementsRequests = [
+      {
+        id: generateId(), vendor: "Kavindi's Store", title: "Diwali Homepage Banner",
+        type: "Homepage Banner", format: "JPG 1200x300", note: "Bright design", status: "Pending", submittedAt: "2025-09-18"
+      },
+      {
+        id: generateId(), vendor: "ABC Mart", title: "Category Highlight - Gifts",
+        type: "Category Highlight", format: "PNG 300x250", note: "Promo for gift items", status: "Pending", submittedAt: "2025-09-16"
+      }
+    ];
+
+    const publishedPlacements = [
+      // example pre-published item (admin may have published earlier)
+      // will have publishStart and publishEnd date strings
+      // { id:..., vendor:..., title:..., type:..., format:..., publishStart:'2025-09-01', publishEnd:'2025-09-15' }
+    ];
+
+    const boostRequests = [
+      {
+        id: generateId(), vendor: "FitZone", product: "Fitness Dumbbells",
+        durationDays: 14, status: "Pending", submittedAt: "2025-09-17"
+      },
+      {
+        id: generateId(), vendor: "Bloom Florists", product: "Bridal Bouquet",
+        durationDays: 7, status: "Pending", submittedAt: "2025-09-10"
+      }
+    ];
+
+    const activeBoosts = [
+      // sample active boost: will have approvedAt and expireAt (date strings)
+      // { id:..., vendor:..., product:..., durationDays:..., approvedAt:'2025-09-02', expireAt:'2025-09-09' }
+    ];
+
+    /***********************
+     * Utility helpers
+     ***********************/
+    function generateId(){ return Math.floor(Math.random()*1e9) }
+    function formatDate(d){ // ISO -> friendly
+      const dt = new Date(d);
+      return dt.toLocaleDateString();
+    }
+    function todayISO(){ return new Date().toISOString().slice(0,10) }
+    function addDaysISO(startISO, days){
+      const d = new Date(startISO);
+      d.setDate(d.getDate()+Number(days));
+      return d.toISOString().slice(0,10);
+    }
+
+    /***********************
+     * Render functions
+     ***********************/
+    function renderPlacementsRequests(){
+      const container = document.getElementById('placementsRequestsContainer');
+      if(placementsRequests.length === 0){
+        container.innerHTML = `<div class="kicker">No placement requests.</div>`;
+        return;
+      }
+      container.innerHTML = placementsRequests.map(r => {
+        return `
+          <div style="margin-bottom:10px;padding:12px;border-radius:8px;background:#fff;border:1px solid #eef2f6">
+            <div class="row" style="justify-content:space-between">
+              <div>
+                <div style="font-weight:700">${escapeHtml(r.title)}</div>
+                <div class="muted">${escapeHtml(r.vendor)} • ${escapeHtml(r.type)}</div>
+                <div class="kicker" style="margin-top:6px">${escapeHtml(r.format)} — ${escapeHtml(r.note || '')}</div>
+                <div class="kicker" style="margin-top:6px">Submitted: ${escapeHtml(r.submittedAt)}</div>
+              </div>
+              <div class="controls">
+                <button class="btn btn-approve small" onclick="approvePlacementRequest('${r.id}')">Approve</button>
+                <button class="btn btn-reject small" onclick="rejectPlacementRequest('${r.id}')">Reject</button>
+                <button class="btn btn-edit small" onclick="editPlacementRequest('${r.id}')">Edit</button>
+                <button class="btn btn-delete small" onclick="deletePlacementRequest('${r.id}')">Delete</button>
+              </div>
+            </div>
+            <div style="margin-top:8px">${labelForStatus(r.status)}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderBoostRequests(){
+      const container = document.getElementById('boostRequestsContainer');
+      if(boostRequests.length === 0){
+        container.innerHTML = `<div class="kicker">No boost requests.</div>`;
+        return;
+      }
+      container.innerHTML = boostRequests.map(r => {
+        return `
+          <div style="margin-bottom:10px;padding:12px;border-radius:8px;background:#fff;border:1px solid #eef2f6">
+            <div class="row" style="justify-content:space-between">
+              <div>
+                <div style="font-weight:700">${escapeHtml(r.product)}</div>
+                <div class="muted">${escapeHtml(r.vendor)} • ${r.durationDays} days</div>
+                <div class="kicker" style="margin-top:6px">Submitted: ${escapeHtml(r.submittedAt)}</div>
+              </div>
+              <div class="controls">
+                <button class="btn btn-approve small" onclick="approveBoostRequest('${r.id}')">Approve</button>
+                <button class="btn btn-reject small" onclick="rejectBoostRequest('${r.id}')">Reject</button>
+                <button class="btn btn-edit small" onclick="editBoostRequest('${r.id}')">Edit</button>
+                <button class="btn btn-delete small" onclick="deleteBoostRequest('${r.id}')">Delete</button>
+              </div>
+            </div>
+            <div style="margin-top:8px">${labelForStatus(r.status)}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderPublishedPlacements(){
+      const container = document.getElementById('publishedPlacementsContainer');
+      if(publishedPlacements.length === 0){
+        container.innerHTML = `<div class="kicker">No published placements</div>`; return;
+      }
+      container.innerHTML = publishedPlacements.map(p => {
+        return `
+          <div style="margin-bottom:10px;padding:12px;border-radius:8px;background:#fff;border:1px solid #eef2f6">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">${escapeHtml(p.title)} <span style="font-weight:600;color:var(--muted);font-size:12px">(${escapeHtml(p.type)})</span></div>
+                <div class="muted" style="margin-top:6px">${escapeHtml(p.vendor)} • ${escapeHtml(p.format)}</div>
+                <div class="kicker" style="margin-top:6px">Start: ${formatDate(p.publishStart)} • End: ${formatDate(p.publishEnd)}</div>
+              </div>
+              <div class="controls">
+                <button class="btn btn-unpublish small" onclick="unpublishPlacement('${p.id}')">Unpublish</button>
+                <button class="btn btn-edit small" onclick="editPublishedPlacement('${p.id}')">Edit</button>
+                <button class="btn btn-delete small" onclick="deletePublishedPlacement('${p.id}')">Delete</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderActiveBoosts(){
+      const container = document.getElementById('activeBoostsContainer');
+      if(activeBoosts.length === 0){
+        container.innerHTML = `<div class="kicker">No active boosts</div>`; return;
+      }
+      container.innerHTML = activeBoosts.map(b => {
+        const remain = remainingDays(b.expireAt);
+        return `
+          <div style="margin-bottom:10px;padding:12px;border-radius:8px;background:#fff;border:1px solid #eef2f6">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">${escapeHtml(b.product)}</div>
+                <div class="muted" style="margin-top:6px">${escapeHtml(b.vendor)} • ${b.durationDays} days</div>
+                <div class="kicker" style="margin-top:6px">Approved: ${formatDate(b.approvedAt)} • Expires: ${formatDate(b.expireAt)} (${remain} day(s) left)</div>
+              </div>
+              <div class="controls">
+                <button class="btn btn-unpublish small" onclick="expireBoostNow('${b.id}')">Expire Now</button>
+                <button class="btn btn-edit small" onclick="extendBoost('${b.id}')">Extend</button>
+                <button class="btn btn-delete small" onclick="deleteActiveBoost('${b.id}')">Delete</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function labelForStatus(status){
+      if(!status) status = 'Pending';
+      if(status === 'Pending') return `<span class="label pending">Pending</span>`;
+      if(status === 'Approved') return `<span class="label approved">Approved</span>`;
+      if(status === 'Rejected') return `<span class="label rejected">Rejected</span>`;
+      return `<span class="label">${escapeHtml(status)}</span>`;
+    }
+
+    function remainingDays(expireISO){
+      const now = new Date(); const exp = new Date(expireISO);
+      const diff = Math.ceil((exp - now)/(1000*60*60*24));
+      return diff >= 0 ? diff : 0;
+    }
+
+    /***********************
+     * Request operations (Placements)
+     ***********************/
+    function approvePlacementRequest(id){
+      const idx = placementsRequests.findIndex(r => r.id == id);
+      if(idx === -1) return alert("Request not found");
+      const req = placementsRequests[idx];
+      // Ask admin for publish duration in days (default 14)
+      let days = prompt("Enter publish duration in days (default 14):", "14");
+      if(days === null) return; // cancelled
+      days = Number(days) || 14;
+      const start = todayISO();
+      const end = addDaysISO(start, days);
+      // Create published object
+      const published = {...req, id: generateId(), publishStart: start, publishEnd: end, approvedBy: "Admin", approvedAt: todayISO()};
+      publishedPlacements.push(published);
+      // mark request as approved and remove from requests array
+      placementsRequests.splice(idx,1);
+      renderAll();
+      alert(`Placement approved and published: ${req.title} (${days} days)`);
+    }
+
+    function rejectPlacementRequest(id){
+      const idx = placementsRequests.findIndex(r => r.id == id);
+      if(idx === -1) return;
+      const reason = prompt("Enter rejection reason (optional):","");
+      placementsRequests[idx].status = "Rejected";
+      placementsRequests[idx].rejectionReason = reason || "";
+      renderPlacementsRequests();
+      alert("Placement request rejected.");
+    }
+
+    function editPlacementRequest(id){
+      const idx = placementsRequests.findIndex(r => r.id == id);
+      if(idx === -1) return;
+      const r = placementsRequests[idx];
+      const newTitle = prompt("Edit title:", r.title) || r.title;
+      const newType = prompt("Edit type:", r.type) || r.type;
+      const newFormat = prompt("Edit format:", r.format) || r.format;
+      const newNote = prompt("Edit note:", r.note || "") || r.note;
+      r.title = newTitle; r.type = newType; r.format = newFormat; r.note = newNote;
+      renderPlacementsRequests();
+    }
+
+    function deletePlacementRequest(id){
+      const idx = placementsRequests.findIndex(r => r.id == id);
+      if(idx === -1) return;
+      if(!confirm("Delete this placement request permanently?")) return;
+      placementsRequests.splice(idx,1);
+      renderPlacementsRequests();
+    }
+
+    /***********************
+     * Published placements operations
+     ***********************/
+    function unpublishPlacement(id){
+      const idx = publishedPlacements.findIndex(p => p.id == id);
+      if(idx === -1) return;
+      // Option: move back to requests as 'Unpublished by admin' - for now delete published placement
+      if(!confirm("Unpublish this placement? It will be removed from live placements.")) return;
+      publishedPlacements.splice(idx,1);
+      renderPublishedPlacements();
+      alert("Placement unpublished.");
+    }
+
+    function editPublishedPlacement(id){
+      const idx = publishedPlacements.findIndex(p => p.id == id);
+      if(idx === -1) return;
+      const p = publishedPlacements[idx];
+      const newEnd = prompt("Set new end date (YYYY-MM-DD):", p.publishEnd);
+      if(newEnd){
+        p.publishEnd = newEnd;
+        renderPublishedPlacements();
+        alert("Publish end date updated.");
+      }
+    }
+
+    function deletePublishedPlacement(id){
+      const idx = publishedPlacements.findIndex(p => p.id == id);
+      if(idx === -1) return;
+      if(!confirm("Delete this published placement?")) return;
+      publishedPlacements.splice(idx,1);
+      renderPublishedPlacements();
+    }
+
+    /***********************
+     * Boost requests operations
+     ***********************/
+    function approveBoostRequest(id){
+      const idx = boostRequests.findIndex(b => b.id == id);
+      if(idx === -1) return alert("Request not found");
+      const r = boostRequests[idx];
+      const start = todayISO();
+      const expire = addDaysISO(start, r.durationDays || 7);
+      const active = {...r, id: generateId(), approvedAt: start, expireAt: expire};
+      activeBoosts.push(active);
+      boostRequests.splice(idx,1);
+      renderAll();
+      alert(`Boost approved for ${r.product} — active until ${expire}`);
+    }
+
+    function rejectBoostRequest(id){
+      const idx = boostRequests.findIndex(b => b.id == id);
+      if(idx === -1) return;
+      const reason = prompt("Enter rejection reason (optional):", "");
+      boostRequests[idx].status = "Rejected";
+      boostRequests[idx].rejectionReason = reason || "";
+      renderBoostRequests();
+      alert("Boost request rejected.");
+    }
+
+    function editBoostRequest(id){
+      const idx = boostRequests.findIndex(b => b.id == id);
+      if(idx === -1) return;
+      const r = boostRequests[idx];
+      const newProduct = prompt("Edit product name:", r.product) || r.product;
+      const newVendor = prompt("Edit vendor name:", r.vendor) || r.vendor;
+      const newDuration = prompt("Edit duration (days):", r.durationDays) || r.durationDays;
+      r.product = newProduct; r.vendor = newVendor; r.durationDays = Number(newDuration);
+      renderBoostRequests();
+    }
+
+    function deleteBoostRequest(id){
+      const idx = boostRequests.findIndex(b => b.id == id);
+      if(idx === -1) return;
+      if(!confirm("Delete this boost request?")) return;
+      boostRequests.splice(idx,1);
+      renderBoostRequests();
+    }
+
+    /***********************
+     * Active boosts operations
+     ***********************/
+    function expireBoostNow(id){
+      const idx = activeBoosts.findIndex(b => b.id == id);
+      if(idx === -1) return;
+      if(!confirm("Expire this boost now?")) return;
+      activeBoosts.splice(idx,1);
+      renderActiveBoosts();
+    }
+
+    function extendBoost(id){
+      const idx = activeBoosts.findIndex(b => b.id == id);
+      if(idx === -1) return;
+      let extra = prompt("Extend by how many days?", "7");
+      if(extra === null) return;
+      extra = Number(extra) || 0;
+      activeBoosts[idx].expireAt = addDaysISO(activeBoosts[idx].expireAt, extra);
+      renderActiveBoosts();
+      alert("Boost extended.");
+    }
+
+    function deleteActiveBoost(id){
+      const idx = activeBoosts.findIndex(b => b.id == id);
+      if(idx === -1) return;
+      if(!confirm("Delete this active boost?")) return;
+      activeBoosts.splice(idx,1);
+      renderActiveBoosts();
+    }
+
+    /***********************
+     * Utilities & boot
+     ***********************/
+    function escapeHtml(str){
+      if(!str && str!==0) return "";
+      return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+    }
+
+    function renderAll(){
+      renderPlacementsRequests();
+      renderBoostRequests();
+      renderPublishedPlacements();
+      renderActiveBoosts();
+    }
+
+    // initial render
+    renderAll();
+
+    // Optional: periodic cleanup for expired published placements or boosts
+    setInterval(() => {
+      const now = new Date();
+      // remove expired boosts
+      for(let i = activeBoosts.length-1; i>=0; i--){
+        if(new Date(activeBoosts[i].expireAt) < now){
+          activeBoosts.splice(i,1);
+        }
+      }
+      // remove expired placements
+      for(let j = publishedPlacements.length-1; j>=0; j--){
+        if(new Date(publishedPlacements[j].publishEnd) < now){
+          publishedPlacements.splice(j,1);
+        }
+      }
+      renderAll();
+    }, 60*1000); // every minute
+  </script>
+</body>
+</html>
